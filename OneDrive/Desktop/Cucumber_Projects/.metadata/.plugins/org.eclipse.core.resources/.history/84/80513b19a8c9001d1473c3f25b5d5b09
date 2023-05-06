@@ -1,0 +1,15 @@
+#Author:
+
+
+@regression
+Feature: Google Search
+
+  As a user
+  I want to search for something
+  So that I can find what I am looking for
+
+@smoke
+  Scenario: Search for a keyword
+    Given I am on the Google search page
+    When I search for "cucumber BDD selenium java"
+    Then I should see the search results

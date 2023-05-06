@@ -1,0 +1,74 @@
+package steps;
+
+import org.openqa.selenium.By;
+
+import org.openqa.selenium.WebDriver;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import io.cucumber.java.en.Given;
+
+import io.cucumber.java.en.Then;
+
+import io.cucumber.java.en.When;
+
+public class Steps {
+
+	private WebDriver driver;
+
+	@Given("I am on the Google search page")
+	public void i_am_on_the_google_search_page() {
+		String browser = System.getProperty("browser");
+
+		if (browser == null) {
+
+			browser = "chrome";
+
+		}
+
+		if (browser.equalsIgnoreCase("chrome")) {
+
+			System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
+
+			driver = new ChromeDriver();
+
+		} else if (browser.equalsIgnoreCase("firefox")) {
+
+			System.setProperty("webdriver.gecko.driver", "path/to/geckodriver");
+
+			driver = new FirefoxDriver();
+
+		}
+
+		driver.get("https://www.google.com");
+	}
+
+	@When("I search for {string}")
+	public void i_search_for(String string) {
+		driver.findElement(By.name("q")).sendKeys("keyword");
+		driver.findElement(By.name("btnK")).click();
+	}
+
+	@Then("I should see the search results")
+	public void i_should_see_the_search_results() {
+		String title = driver.getTitle();
+
+		if (title.contains("Google Search")) {
+
+			System.out.println("Search results displayed");
+
+		} else {
+
+			System.out.println("Search results not displayed");
+
+		}
+
+		driver.quit();
+
+	}
+
+	}
+
+
