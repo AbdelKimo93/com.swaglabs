@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite parallel="tests" name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" parallel="tests" name="Test4(failed)">
+    <parameter name="password" value="secret_sauce"/>
+    <parameter name="username" value="problem_user"/>
+    <classes>
+      <class name="testScripts.Main">
+        <methods>
+          <include name="setUp"/>
+          <include name="userName"/>
+          <include name="teardown"/>
+          <include name="passWord"/>
+          <include name="loginButton"/>
+        </methods>
+      </class> <!-- testScripts.Main -->
+    </classes>
+  </test> <!-- Test4(failed) -->
+</suite> <!-- Failed suite [Suite] -->
